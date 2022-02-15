@@ -6,6 +6,10 @@ export const ITEMS_QUERY = gql`
       id
       title
       author
+      category {
+        title
+        id
+      }
     }
   }
 `;
