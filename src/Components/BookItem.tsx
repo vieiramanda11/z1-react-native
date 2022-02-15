@@ -1,16 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { Text, View } from 'react-native';
+import { BookInterface } from '../../types';
 
-interface Item {
-  title: string;
+interface BookInterfaceProps {
+  book: BookInterface;
 }
 
-interface ItemProps {
-  item: Item;
-}
-
-const BookItem = ({ item }: ItemProps) => {
+const BookItem = ({ book }: BookInterfaceProps) => {
   return (
     <View
       style={{
@@ -18,7 +15,8 @@ const BookItem = ({ item }: ItemProps) => {
         borderWidth: 0.5,
         padding: 5,
       }}>
-      <Text>{item.title}</Text>
+      <Text>{book.title}</Text>
+      <Text>{book.category.title}</Text>
     </View>
   );
 };
