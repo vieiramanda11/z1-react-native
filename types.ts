@@ -9,6 +9,7 @@ export interface BookInterface {
   author?: string;
   category: CategoryInterface;
   id?: string;
+  content?: string;
   title: string;
   image?: string;
 }

@@ -18,7 +18,14 @@ const BooksList = ({ data }: any) => {
         <BookItem
           index={index}
           book={item}
-          onPress={() => navigation.navigate('Details', { title: item.title })}
+          onPress={() =>
+            navigation.navigate('Details', {
+              title: item.title,
+              author: item.author,
+              content: item.content,
+              category: item.category.title,
+            })
+          }
         />
       )}
     />

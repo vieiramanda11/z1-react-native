@@ -5,7 +5,7 @@ import { BookInterface } from '../../types';
 interface BookInterfaceProps {
   book: BookInterface;
   onPress: Function;
-  index: any;
+  index: number;
 }
 
 const BookItem = ({ book, onPress, index }: BookInterfaceProps) => {
