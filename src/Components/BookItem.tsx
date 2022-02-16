@@ -16,6 +16,7 @@ const BookItem = ({ book, onPress }: BookInterfaceProps) => {
         borderColor: 'black',
         borderWidth: 0.5,
         padding: 5,
+        width: '50%',
       }}>
       <Text>{book.title}</Text>
       <Text>{book.category.title}</Text>
