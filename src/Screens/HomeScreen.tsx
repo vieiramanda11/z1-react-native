@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState } from 'react';
-import { Text, FlatList, TouchableOpacity } from 'react-native';
+import { Text, FlatList } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { useQuery } from '@apollo/client';
 import { ITEMS_QUERY } from '../graphql/Queries';
@@ -8,7 +8,8 @@ import BookItem from '../Components/BookItem';
 import CategoriesButtons from '../Components/CategoriesButtons';
 import { BookInterface } from '../../types';
 import { categoriesList } from '../utils/categoriesList';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackRoutes } from '../Navigation/Routes';
 
 const HomeScreen = () => {
   const { data, loading, error } = useQuery(ITEMS_QUERY);
@@ -16,6 +17,8 @@ const HomeScreen = () => {
   const [itemFromCategories, setItemFromCategories] = useState(data?.items);
 
   const categories = categoriesList(data?.items);
+
+  const navigation = useNavigation<NavigationProp<RootStackRoutes>>();
 
   const filterCategory = (category: string) => {
     const filteredItems =
@@ -27,17 +30,12 @@ const HomeScreen = () => {
     setItemFromCategories(filteredItems);
   };
 
-  const navigation = useNavigation<any>();
-
   return (
     <SafeAreaView style={{ alignItems: 'center', padding: 30 }}>
       {error && <Text>{error}</Text>}
       {loading && <Text>Loading...</Text>}
       {data && (
         <>
-          <TouchableOpacity onPress={() => navigation.navigate('Details')}>
-            <Text>Detail</Text>
-          </TouchableOpacity>
           <CategoriesButtons
             filterCategory={filterCategory}
             categories={categories}
@@ -45,7 +43,14 @@ const HomeScreen = () => {
           <FlatList
             data={itemFromCategories || data?.items}
             keyExtractor={item => item.id}
-            renderItem={({ item }) => <BookItem book={item} />}
+            renderItem={({ item }) => (
+              <BookItem
+                book={item}
+                onPress={() =>
+                  navigation.navigate('Details', { title: item.title })
+                }
+              />
+            )}
           />
         </>
       )}

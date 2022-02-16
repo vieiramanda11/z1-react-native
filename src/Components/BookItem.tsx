@@ -1,15 +1,17 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { BookInterface } from '../../types';
 
 interface BookInterfaceProps {
   book: BookInterface;
+  onPress: Function;
 }
 
-const BookItem = ({ book }: BookInterfaceProps) => {
+const BookItem = ({ book, onPress }: BookInterfaceProps) => {
   return (
-    <View
+    <TouchableOpacity
+      onPress={() => onPress()}
       style={{
         borderColor: 'black',
         borderWidth: 0.5,
@@ -17,7 +19,7 @@ const BookItem = ({ book }: BookInterfaceProps) => {
       }}>
       <Text>{book.title}</Text>
       <Text>{book.category.title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
