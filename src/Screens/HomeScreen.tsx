@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { useQuery } from '@apollo/client';
-import { ITEMS_QUERY } from '../graphql/Queries';
+import { ITEMS_QUERY } from '../graphql';
 import CategoriesButtons from '../Components/CategoriesButtons';
 import { BookInterface } from '../../types';
 import { categoriesList } from '../utils/categoriesList';
 import Loading from '../Components/Loading';
 import BooksList from '../Components/BooksList';
+import Title from '../Components/Title';
 
 const HomeScreen = () => {
   const { data, loading, error } = useQuery(ITEMS_QUERY);
@@ -32,6 +33,7 @@ const HomeScreen = () => {
       {loading && <Loading />}
       {data && (
         <>
+          <Title />
           <CategoriesButtons
             filterCategory={filterCategory}
             categories={categories}
