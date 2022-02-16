@@ -6,6 +6,8 @@ export const ITEMS_QUERY = gql`
       id
       title
       author
+      image
+      content
       category {
         title
         id

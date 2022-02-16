@@ -1,6 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { TouchableOpacity, ScrollView, Text } from 'react-native';
+import { TouchableOpacity, ScrollView, Text, StyleSheet } from 'react-native';
 
 interface CategoriesButtonsProps {
   categories: string[];
@@ -12,7 +11,7 @@ const CategoriesButtons = ({
   filterCategory,
 }: CategoriesButtonsProps) => {
   return (
-    <ScrollView horizontal>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       {categories.map((category: string) => {
         return (
           <TouchableOpacity
@@ -20,13 +19,29 @@ const CategoriesButtons = ({
             onPress={() => {
               filterCategory(category);
             }}
-            style={{ padding: 5 }}>
-            <Text>{category}</Text>
+            style={styles.button}>
+            <Text style={styles.buttonText}>{category}</Text>
           </TouchableOpacity>
         );
       })}
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 15,
+    marginRight: 10,
+    marginTop: 15,
+    backgroundColor: '#a183c8',
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#d8edf8',
+  },
+});
 
 export default CategoriesButtons;

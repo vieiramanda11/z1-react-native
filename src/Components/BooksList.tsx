@@ -14,8 +14,9 @@ const BooksList = ({ data }: any) => {
       numColumns={2}
       data={data}
       keyExtractor={item => item.id}
-      renderItem={({ item }) => (
+      renderItem={({ item, index }) => (
         <BookItem
+          index={index}
           book={item}
           onPress={() => navigation.navigate('Details', { title: item.title })}
         />

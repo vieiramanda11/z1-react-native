@@ -10,4 +10,5 @@ export interface BookInterface {
   category: CategoryInterface;
   id?: string;
   title: string;
+  image?: string;
 }
